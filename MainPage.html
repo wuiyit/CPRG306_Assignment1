@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Converter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="converter.js"></script>
+</head>
+
+<body class="bg-gray-100">
+    <!--header-->
+    <header>
+            <h1 class = "text-center bg-yellow-900 text-white px-4 py-3 text-4xl font-medium">Unit Converter</h1>
+    </header>
+
+    <!--nav bar with tabs for required conversions-->
+    <nav class="bg-yellow-100 p-3">
+        <div class="container mx-auto">          
+            <div class="mx-5 text-center space-x-4">   
+                <a href="#" class="text-yellow-900 hover:bg-white rounded-md px-3 py-2 text-xl font-medium" onclick="showTab('weight')">Weight</a>
+                <a href="#" class="text-yellow-900 hover:bg-white rounded-md px-3 py-2 text-xl font-medium" onclick="showTab('distance')">Distance</a>
+                <a href="#" class="text-yellow-900 hover:bg-white rounded-md px-3 py-2 text-xl font-medium" onclick="showTab('temperature')">Temperature</a>
+            </div>
+        </div>
+    </nav>
+
+ 
+    <div id="weight" class="tab">
+        <!--Weight Conversion tab-->
+        <h2 class="p-2 text-lg font-bold mb-4 text-center">Weight Conversion</h2>
+        <form id="weightForm" class="max-w-sm mx-auto">
+            <div>
+                <!--Input field for entering wright-->
+                <label for="weightInput" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter Weight (lb or kg):</label>
+                <input type="text" id="weightInput" class="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500" placeholder="Enter 1 or more than 1 number (e.g. 30, 40)">
+            </div>
+            <div>
+                <!--Dropdown for selecting conversion type-->
+                <label for="weightConversionType" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Convert:</label>
+                <select id="weightConversionType" class="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
+                    <option value="lbToKg">Pounds to Kilograms</option>
+                    <option value="kgToLb">Kilograms to Pounds</option>
+                </select>
+            </div>
+            <button type="button" onclick="convertWeight()" class="text-white bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">Convert</button>
+            <div class="mt-4">
+                <label for="weightResult" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Result:</label>
+                <input id="weightResult" class="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500" disabled>
+            </div>
+        </form>
+    </div>
+    
+    <!--Distance Conversion tab-->
+    <div id="distance" class="tab hidden">
+        <h2 class="p-2 text-lg font-bold mb-4 text-center">Distance Conversion</h2>
+        <form id="distanceForm" class="max-w-sm mx-auto">
+            <div>
+                <label for="distanceInput" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter Distance (miles or km):</label>
+                <input type="text" id="distanceInput" class="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500" placeholder="Enter 1 or more than 1 number (e.g. 30, 40)">
+            </div>
+            <div>
+                <label for="distanceConversionType" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Convert:</label>
+                <select id="distanceConversionType" class="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
+                    <option value="milesToKm">Miles to Kilometers</option>
+                    <option value="kmToMiles">Kilometers to Miles</option>
+                </select>
+            </div>
+            <button type="button" onclick="convertDistance()" class="text-white bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">Convert</button>
+            <div class="mt-4">
+                <label for="distanceResult" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Result:</label>
+                <input id="distanceResult" class="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500" disabled>
+            </div>
+        </form>
+    </div>
+    
+    <!--Temperature Conversion tab-->
+    <div id="temperature" class="tab hidden">
+        <h2 class="p-2 text-lg font-bold mb-4 text-center">Temperature Conversion</h2>
+        <form id="temperatureForm" class="max-w-sm mx-auto">
+            <div>
+                <label for="temperatureInput" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter Temperature (°C or °F):</label>
+                <input type="text" id="temperatureInput" class="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500" placeholder="Enter 1 or more than 1 number (e.g. 30, 40)">
+            </div>
+            <div>
+                <label for="temperatureConversionType" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Convert:</label>
+                <select id="temperatureConversionType" class="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
+                    <option value="cToF">Celsius to Fahrenheit</option>
+                    <option value="fToC">Fahrenheit to Celsius</option>
+                </select>
+            </div>
+            <button type="button" onclick="convertTemperature()" class="text-white bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">Convert</button>
+            <div class="mt-4">
+                <label for="temperatureResult" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Result:</label>
+                <input id="temperatureResult" class="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500" disabled>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
